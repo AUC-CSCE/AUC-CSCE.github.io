@@ -143,6 +143,10 @@ Error message and password prompt
 
 <li>$:/config/DefaultSidebarTab</li>
 
+<li>$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/full-screen</li>
+
+<li>$:/config/RelinkOnRename</li>
+
 <li>$:/core</li>
 
 <li>$:/core/ui/SideBarLists</li>
@@ -164,6 +168,8 @@ Error message and password prompt
 <li>$:/state/plugin-info--1893909122-$:/plugins/tiddlywiki/highlight---1375639774</li>
 
 <li>$:/state/showeditpreview</li>
+
+<li>$:/state/sidebar</li>
 
 <li>$:/state/tab--1963855381</li>
 
@@ -397,7 +403,11 @@ Error message and password prompt
 
 <li>Docker Installation</li>
 
-<li>Draft of 'Docker Installation'</li>
+<li>Docker References</li>
+
+<li>Docker Run Hello World</li>
+
+<li>Examine Images and Containers</li>
 
 <li>Main</li>
 
@@ -413,6 +423,12 @@ Error message and password prompt
 <div id="storeArea" style="display:none;">
 <div created="20200319052617061" modified="20200319052622709" title="$:/config/DefaultSidebarTab">
 <pre>Contents</pre>
+</div>
+<div created="20200319084459221" modified="20200319084459221" title="$:/config/PageControlButtons/Visibility/$:/core/ui/Buttons/full-screen">
+<pre>show</pre>
+</div>
+<div created="20200319064449477" modified="20200319064450365" title="$:/config/RelinkOnRename">
+<pre>no</pre>
 </div>
 <div author="JeremyRuston" core-version="&gt;=5.0.0" dependents="" description="TiddlyWiki5 core" list="readme" plugin-priority="0" plugin-type="plugin" title="$:/core" type="application/json" version="5.1.21">
 <pre>{
@@ -9714,6 +9730,9 @@ Error message and password prompt
 <div created="20200319045630905" modified="20200319045630905" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
+<div created="20200319084522701" modified="20200319084523790" title="$:/state/sidebar">
+<pre>yes</pre>
+</div>
 <div created="20200319045226922" modified="20200319045239916" title="$:/state/tab--1963855381">
 <pre>$:/themes/tiddlywiki/vanilla/themetweaks</pre>
 </div>
@@ -9732,10 +9751,10 @@ Error message and password prompt
 <div created="20200319052310094" modified="20200319052315471" title="$:/state/tab/sidebar--356319527">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200319045317964" modified="20200319052705829" title="$:/state/tab/sidebar--595412856">
+<div created="20200319045317964" modified="20200319084553570" title="$:/state/tab/sidebar--595412856">
 <pre>Contents</pre>
 </div>
-<div created="20200319054505851" list="Main [[Draft of 'Docker Installation']]" modified="20200319055234247" title="$:/StoryList">
+<div created="20200319064552613" list="Main [[Examine Images and Containers]]" modified="20200319084206273" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200319052206272" modified="20200319052206272" title="$:/temp/advancedsearch">
@@ -9754,7 +9773,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/full&quot;: {
             &quot;title&quot;: &quot;$:/info/url/full&quot;,
-            &quot;text&quot;: &quot;file:///Users/ikhalil/Downloads/tiddlywikilocations/CSCE1102.html&quot;
+            &quot;text&quot;: &quot;file:///Users/ikhalil/Downloads/tiddlywikilocations/index.html&quot;
         },
         &quot;$:/info/url/host&quot;: {
             &quot;title&quot;: &quot;$:/info/url/host&quot;,
@@ -9774,7 +9793,7 @@ Error message and password prompt
         },
         &quot;$:/info/url/pathname&quot;: {
             &quot;title&quot;: &quot;$:/info/url/pathname&quot;,
-            &quot;text&quot;: &quot;/Users/ikhalil/Downloads/tiddlywikilocations/CSCE1102.html&quot;
+            &quot;text&quot;: &quot;/Users/ikhalil/Downloads/tiddlywikilocations/index.html&quot;
         },
         &quot;$:/info/url/search&quot;: {
             &quot;title&quot;: &quot;$:/info/url/search&quot;,
@@ -10558,7 +10577,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20200319045728630" modified="20200319045730577" title="$:/temp/RemoteAssetSearch/$:/config/OfficialPluginLibrary">
 <pre>highli</pre>
 </div>
-<div created="20200319045322567" modified="20200319052206272" title="$:/temp/search">
+<div created="20200319045322567" modified="20200319084448198" title="$:/temp/search">
 <pre></pre>
 </div>
 <div created="20200319045712435" modified="20200319045712435" tags="$:/tags/ServerConnection" title="$:/temp/ServerConnection/https://tiddlywiki.com/library/v5.1.21/index.html" url="https://tiddlywiki.com/library/v5.1.21/index.html">
@@ -10685,40 +10704,14 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20200319045229702" modified="20200319045234798" title="$:/view">
 <pre>classic</pre>
 </div>
-<div created="20200319050032516" list-before="$:/core/ui/SideBar/Open" modified="20200319050345723" tags="$:/tags/SideBar" title="Contents">
-<pre>* AAA
-*  BBB
-*  CCC</pre>
+<div created="20200319050032516" list-before="$:/core/ui/SideBar/Open" modified="20200319084408473" tags="$:/tags/SideBar" title="Contents">
+<pre>* Docker
+** [[Installation|Docker Installation]]
+**  [[Pull &amp; Run|Docker Run Hello World]]
+** [[Check Images &amp; Containers|Examine Images and Containers]]
+** [[Refs. &amp; Cheat Sheets|Docker References]]</pre>
 </div>
-<div created="20200319054940945" modified="20200319060106433" title="Docker Installation">
-<pre>If you have not installed docker, then you should follow these instructions to install it:
-''NOTE: IF you have followed the first exercise correctly then you should have it installed. Try to run the command &quot;docker&quot; at the command prompt to check''
-
-! Step 1: Download Convenience Script
-To install docker, you can follow the instructions in: [[https://docs.docker.com/install/linux/docker-ce/ubuntu/]]
-
-Docker however provides a convenience script that does everything with some assumptions of default settings. To use this convenience script you can do the following:
-
-```bash
-curl -fsSL https://get.docker.com -o get-docker.sh
-```
-! Step 2: Run Convenience Script
-```
-sudo sh get-docker.sh
-```
-!Step 3: Give Your Account The Necessary Permission
-Next Step: If you want to be able to use docker as a normal user (normally you should), then you execute the following command to add your username to the group docker in order to give it the permission to use docker:
-
-For example, in my case, my username is &quot;ikhalil&quot; so I run the following command
-
-```bash
-sudo usermod -aG docker ikhalil
-```
-substitute &quot;ikhalil&quot; with your own username 
-
-</pre>
-</div>
-<div created="20200319054940945" draft.of="Docker Installation" draft.title="Docker Installation" modified="20200319060318695" title="Draft of 'Docker Installation'">
+<div created="20200319054940945" modified="20200319065325583" title="Docker Installation">
 <pre>If you have not installed docker, then you should follow these instructions to install it:
 ''NOTE: IF you have followed the first exercise correctly then you should have it installed. Try to run the command &quot;docker&quot; at the command prompt to check''
 
@@ -10748,12 +10741,60 @@ substitute &quot;ikhalil&quot; with your own username
 
 </pre>
 </div>
-<div created="20200319045433915" modified="20200319054610977" tags="" title="Main">
+<div created="20200319064558211" modified="20200319064711093" title="Docker References">
+<pre>! Cheat Sheets
+* Docker CLI cheatsheet: https://devhints.io/docker
+* Docker Cheat Sheet: https://www.docker.com/sites/default/files/d8/2019-09/docker-cheat-sheet.pdf</pre>
+</div>
+<div created="20200319080819241" modified="20200319082458944" title="Docker Run Hello World">
+<pre>The following steps show the first basic steps of building an image from the dockerhub repository and then run the image
+
+!Step 1: Download and build the image from dockerhub
+The ``docker pull`` command is used as follows:
+
+```bash
+docker pull hello-world
+```
+[img[docker/01-pull-hello-world.png]]
+
+!Step 2: Run A Container
+Once an image is pulled (downloaded), containers instances can be created and run. In order to run a container instance, the command ``docker run`` is used. In the hello world example the following command will be issued leading the screenshot below:
+
+```bash
+docker run hello-world
+```
+[img[docker/02-run-hello-world.png]]
+
+</pre>
+</div>
+<div created="20200319083351471" modified="20200319084012208" title="Examine Images and Containers">
+<pre>! Listing All Locally Available Images 
+The following command lists the images that are available on the local system.
+
+```
+docker image ls
+```
+[img[docker/03-image-ls.png]]
+
+!Listing all Running Containers
+The following command lists all the containers (instances of images) that are running on the system
+
+```
+docker container ls
+```
+This will only show the running containers.
+the argument ``-a`` could be added in order to tell it to return all containers including ones that have exited as follows:
+
+[img[docker/04-container-ls.png]]</pre>
+</div>
+<div created="20200319045433915" modified="20200319084201278" tags="" title="Main">
 <pre>Topics: 
 
-* Docker
-** [[Installation|Docker Installation]]
-</pre>
+* Docker Exercises:
+** [[Installation|Docker Installation]] ''*if needed''
+**  [[Running Build And Run Image - Hello World|Docker Run Hello World]]
+** [[Examine Images and Containers]]
+** [[Docker References &amp; Cheat Sheets|Docker References]]</pre>
 </div>
 
 </div>
