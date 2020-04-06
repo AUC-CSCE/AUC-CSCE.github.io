@@ -459,17 +459,11 @@ Error message and password prompt
 
 <li>Main</li>
 
-<li>netcat</li>
-
-<li>Netcat Web Server</li>
-
 <li>Networking - Sockets</li>
 
 <li>Running Interactive Containers</li>
 
-<li>TCP Client</li>
-
-<li>TCP Server</li>
+<li>TCP Sockets</li>
 
 </ul>
 </p>
@@ -9829,7 +9823,7 @@ Error message and password prompt
 <div created="20200319045630905" modified="20200330214127840" title="$:/state/showeditpreview">
 <pre>yes</pre>
 </div>
-<div created="20200319084522701" modified="20200405190837463" title="$:/state/sidebar">
+<div created="20200319084522701" modified="20200331052652773" title="$:/state/sidebar">
 <pre>yes</pre>
 </div>
 <div created="20200319045226922" modified="20200319151825520" title="$:/state/tab--1963855381">
@@ -9856,10 +9850,10 @@ Error message and password prompt
 <div created="20200319052310094" modified="20200319052315471" title="$:/state/tab/sidebar--356319527">
 <pre>$:/core/ui/SideBar/Open</pre>
 </div>
-<div created="20200319045317964" modified="20200405203507713" title="$:/state/tab/sidebar--595412856">
+<div created="20200319045317964" modified="20200331052915666" title="$:/state/tab/sidebar--595412856">
 <pre>Contents</pre>
 </div>
-<div created="20200405222720865" list="Main [[Networking - Sockets]]" modified="20200405222720865" title="$:/StoryList">
+<div created="20200404151539984" list="[[TCP Sockets]] Main" modified="20200404151539984" title="$:/StoryList">
 <pre></pre>
 </div>
 <div created="20200319052206272" modified="20200319052206272" title="$:/temp/advancedsearch">
@@ -10864,8 +10858,8 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 <div created="20200319045229702" modified="20200319151507943" title="$:/view">
 <pre>zoomin</pre>
 </div>
-<div created="20200319050032516" list-before="$:/core/ui/SideBar/Open" modified="20200405203432661" tags="$:/tags/SideBar" title="Contents">
-<pre>[[Docker]]
+<div created="20200319050032516" list-before="$:/core/ui/SideBar/Open" modified="20200331052909616" tags="$:/tags/SideBar" title="Contents">
+<pre>Docker
 
 * [[Installation|Docker Installation]]
 *  [[Pull &amp; Run|Docker Run Hello World]]
@@ -10876,14 +10870,7 @@ This plugin also requires the JSZip plugin ([[$:/plugins/tiddlywiki/jszip]]) to 
 * [[Cheat Sheet|Docker Command Cheat Sheet]]
 * [[Refs. &amp; Links|Docker References]]
 
-[[Networking - Sockets]]
-
-* Basic Concepts
-** [[Playing with sockets using netcat|netcat]]
-** [[Simulating Web Server Functionality using netcat|Netcat Web Server]]
-* Jump Into Code
-** [[Writing a TCP (Stream) Socket Server|TCP Server]]
-** [[Writing a TCP (Stream) Socket Client|TCP Client]]</pre>
+[[Networking - Sockets]]</pre>
 </div>
 <div created="20200321012629513" modified="20200322065416534" title="Copying Files Inside Image">
 <pre>Our next step will be to see how to copy files inside the docker image being built.
@@ -11158,134 +11145,11 @@ the argument ``-a`` could be added in order to tell it to return all containers 
 <pre> * [[Docker]]
  * [[Networking - Sockets]]</pre>
 </div>
-<div created="20200404152241700" modified="20200405123736085" title="netcat">
-<pre>! Brief:
-``netcat`` or for short ``nc`` is a command line tool for basic testing of different testing operations. It supports both ''TCP'' as well as ''UDP'' sockets. It can be used to test both client and server functionality.
-
-! Create a TCP Server Socket
-To use netcat to test server socket functionality, you can use the following command
-
-```bash
-netcat -l -p 8080
-```
-|! nc |'nc' or 'netcat' is the command |
-|!-l |listen for incoming connections |
-|!-p |port number to listen on |
-|!8080 |an arbitrary port number that we chose |
-
-
-!Create a TCP Client Socket and Connect
-On the other side, to create a TCP client socket to connect to and test the socket connection use:
-
-```
-nc 127.0.0.1 8080
-```
-|!nc |netcat command |
-|!127.0.0.1 |The address of the localhost. Can use the name &quot;localhost&quot; instead. Instead of using ``localhost``, any other server address could be used to connect to an external server |
-|!8080 |The port that we want to connect to. Has to be the same port that the server is listening on |
-
-''Note: Netcat can perform the same functionality also for UDP sockets using the argument ``-u``'' You can check the man page and experiment with UDP sockets 
-
-
-
-!! Links and further references:
-* https://www.sans.org/security-resources/sec560/netcat_cheat_sheet_v1.pdf
-* http://man7.org/linux/man-pages/man1/ncat.1.html
-
-!! Some tutorials:
-* https://www.digitalocean.com/community/tutorials/how-to-use-netcat-to-establish-and-test-tcp-and-udp-connections-on-a-vps
-
-
-</pre>
-</div>
-<div created="20200405124200621" modified="20200405145353339" title="Netcat Web Server">
-<pre>We can use ``netcat`` to experiment with how a web-server works.
-A web server uses a protocol called ''HTTP (Hypertext Transfer Protocol)'' protocol.
-HTTP will be covered later but for now we will use the following oversimplified information to do the basic simulation:
-
-!! HTTP works over TCP connection
-HTTP is nothing but a normal TCP connection between a client and a server. The steps are as follows:
-
-# Client Makes a TCP connection to Server
-# Server Accepts the Connection
-# Client Sends a ''request''
-# Server Sends a ''response''
-
-!! HTTP Request
-HTTP request contains some information that is sent to the server. Such information and details of interaction will be discussed later. For now, below is a simple request. We will discuss the details later on.
-
-```http
-GET / HTTP/1.1
-Host: localhost:8080
-Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
-Upgrade-Insecure-Requests: 1
-Cookie: csrftoken=yHpqH44onLPkK6LHlrx9fuazU1zR5bENCDm4uRHsHX9va4fptpus76uUHixAGNDP; sessionid=esiwwi18mcgt3tdwiy6s9r43hkw4v02b; currency=USD; language=en-gb; django_language=en
-User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_4) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/13.1 Safari/605.1.15
-Accept-Language: en-us
-Accept-Encoding: gzip, deflate
-Connection: keep-alive
-```
-
-!!HTTP Response
-The web server on the other hand responds using something called an HTTP response. The response is made up of two parts
-
-# ''Header:'' Contains information about the type of content returned
-# ''Content:'' Actual content
-
-The most basic header that could be returned could be as follows:
-
-```
-HTTP/1.1 200
-
-Hello World
-```
-
-!!Using netcat to Simulate Web Server Functionality
-!!! Step1: Create a Server Socket using netcat
-``nc -l -p 8080``
-This runs netcat, which opens a server socket and listens on port 8080
-
-!!!Step 2: Connect with Web Browser
-Open your favorite web browser (chrome/firefox/safari, etc.) and browse to the address ``http://localhost:8080``
-
-!!! Step 3: Check HTTP Request
-Observe the netcat session, you will see that the browser sent a request with its corresponding header
-
-!!! Step 4: Type and HTTP response
-type the following lines:
-
-```
-HTTP/1.1 200
-
-Hello World
-```
-Note that there is an empty line after the first line (the header) and before the last line (the contents)
-
-Press CTRL+C to stop the server input and check the browser
-
-''Note:'' You can play with the content and enter any HTML code that you want. We will see this when we study HTTP
-</pre>
-</div>
-<div created="20200328153620367" modified="20200406065057549" tags="" title="Networking - Sockets">
-<pre>! Networking Basics (TCP Sockets)
-* Basic Concepts
-** [[Playing with sockets using netcat|netcat]]
-** [[Simulating Web Server Functionality using netcat|Netcat Web Server]]
-* Jump Into Code
-** [[Writing a TCP (Stream) Socket Server|TCP Server]]
-** [[Writing a TCP (Stream) Socket Client|TCP Client]]
-
-!!Prerecorded Videos
+<div created="20200328153620367" modified="20200331201109840" tags="" title="Networking - Sockets">
+<pre>!!Prerecorded Videos
 *Sections 1, 2, and 5: (Nada Ayman) [[Whole Playlist|https://www.youtube.com/playlist?list=PL1SvZFIe_dY5SE7oClx7y7KM12DUD9pw_]]
 
 *Sections 6 and 7: (Reem Ahmed): [[Whole Playlist|https://www.youtube.com/playlist?list=PLLQvWnCYnBaVZsXMoCEtmIFPDBCoD0Wnk]]
-*Sections 1, and 2: (Islam Khalil): [[Whole Playlist|https://www.youtube.com/playlist?list=PLNK1KjogAVF1EoxTqLl3KTDWnceDq5xsd]]
-** [[1- Networks Intro (Continued)|https://youtu.be/PHjZOcVLYMA]]
-** [[2- Intro to Netcat|https://youtu.be/Tf53lJo-rRA]]
-** [[3-  Netcat Web Server|https://youtu.be/irul6A-Qs28]]
-** [[4- TCP Server|https://youtu.be/FCkuk_21iQQ]]
-** [[5- TCP Server 2|https://youtu.be/398-v51GCK8]]
-** [[6- TCP Client|https://youtu.be/onyCFXFDVz8]]
 
 
 !!Recording of Live Classes
@@ -11347,337 +11211,8 @@ To force kill a running container use ``docker kill &lt;container name or id&gt;
 
 </pre>
 </div>
-<div created="20200405172718792" modified="20200405174456328" title="TCP Client">
-<pre>!! Include Needed Header Files
-```cpp
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-```
-!! Write a Convenient Function for Error Handling
-This step is not mandatory. It is just convenient to write a function that handles error and call it whenever needed:
-
-```cpp
-// A function to print an error message and terminate
-void terminate_with_error (const char * error_msg,int sock) {
-	printf (&quot;%s\n&quot;,error_msg); // printing error
-	perror(&quot;Socket Error:&quot;); // printing system error
-	if (sock != -1) // Close socket and exit is socket opened
-	{
-		close (sock);
-		exit(1);
-	}
-}
-```
-
-!!Main Program and Reading Arguments
-
-```cpp
-int main (int argc,char ** argv)
-{
-	if ( argc != 3) { // Check on the number of arguments and exit if incorrect
-		printf (&quot;Usage: ./client &lt;server-address&gt; &lt;port-number&gt;\n&quot;);
-		exit(1);
-	}
-```
-The code above reads the arguments passed to the program.
-
-|!argc |Number of parameters/arguments passed to the program at command line |
-|!argv |Array of pointers to strings. Each of which contains one of the arguments |
-Note: argv[0] (first item in the array) is the name of the program itself. Meaning that if you pass two arguments to the program you get 3 entries in the argv
-
-
-!! Some needed Variables
-```cpp
-int sock; // Socket handler
-struct sockaddr_in serverAddr; // Server address
-socklen_t sin_size = sizeof(struct sockaddr_in); // get size of server address
-// Try to create a socket and print an error message and exit if failed
-int maxBytes = 1024; // size of buffer
-char buffer[maxBytes+1];	// alocat buffer of 1 K
-```
-!! Create the Socket
-```cpp
-if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1){
-            perror(&quot;Error Creating Socket&quot;);
-            exit(1);
-}
-```
-Use the ``socket()`` function to create a socket to use for all communication. If there was an error in socket creation (i.e: returned -1) then terminate the program with an error.
-Please note the two parameters:
-
-!!!Arguments
-|!1 |!Address Family |This indicates the address family. ``AF_INET`` means Internet Protocol. There are many other protocols that could be used. Check the reference link below for information on other options. |
-|!2 |!Socket Type |There are different types of sockets. ``SOCK_STREAM`` means it is a TCP socket. There are other types including ``SOCK_DGRAM`` which is used for UDP datagram sockets. These are the two most widely used types. You can also check the link below for other options |
-|!3 |!Protocol |In case there are more than one protocol per socket type, the protocol number is placed here. In most cases there is only one protocol and we just put a ``0`` here. |
-
-!! Set Socket Connection Parameters
-```cpp
-memset((char *) &amp;serverAddr, 0,sizeof(serverAddr)); // initialize the server address data structure
-serverAddr.sin_family = AF_INET; // Set up the communication family
-serverAddr.sin_port = htons(atoi(argv[2])); //set the port of the server
-struct hostent *server = gethostbyname(argv[1]); // convert the host name into a network host structure
-if ( server == NULL ) terminate_with_error(&quot;Cannot resolve server address&quot;,sock); // if failed terminate with an error message
-// copy Server address data into server address structure
-memcpy((char *)&amp;serverAddr.sin_addr.s_addr,(char *)server-&gt;h_addr, server-&gt;h_length); 
-memset(&amp;(serverAddr.sin_zero), 0, 8); // Zero out the rest of the address structure
-```
-!! Read Command from User
-```cpp
-memset(buffer,0,maxBytes+1); // initialize it.
-printf (&quot;remote-shell$&gt;&quot;);
-fgets(buffer,maxBytes,stdin);
-if (strncasecmp(buffer,&quot;exit&quot;,4) ==0) break;
-```
-
-
-!Whole Program
-```cpp
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;netdb.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-
-// A function to print an error message and terminate
-void terminate_with_error (const char * error_msg,int sock) {
-	printf (&quot;%s\n&quot;,error_msg); // printing error
-	perror(&quot;Socket Error:&quot;); // printing system error
-	if (sock != -1) // Close socket and exit is socket opened
-	{
-		close (sock);
-		exit(1);
-	}
-}
-
-int main (int argc,char ** argv)
-{
-	if ( argc != 3) { // Check on the number of arguments and exit if incorrect
-		printf (&quot;Usage: ./client &lt;server-address&gt; &lt;port-number&gt;\n&quot;);
-		exit(1);
-	}
-	int sock; // Socket handler
-	struct sockaddr_in serverAddr; // Server address
-	socklen_t sin_size = sizeof(struct sockaddr_in); // get size of server address
-	// Try to create a socket and print an error message and exit if failed
-    int maxBytes = 1024; // size of buffer
-    char buffer[maxBytes+1];	// alocat buffer of 1 K
-    for (;;)
-    {
-        if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1){
-            perror(&quot;Error Creating Socket&quot;);
-            exit(1);
-        }
-        memset((char *) &amp;serverAddr, 0,sizeof(serverAddr)); // initialize the server address data structure
-        serverAddr.sin_family = AF_INET; // Set up the communication family
-        serverAddr.sin_port = htons(atoi(argv[2])); //set the port of the server
-        struct hostent *server = gethostbyname(argv[1]); // convert the host name into a network host structure
-        if ( server == NULL ) terminate_with_error(&quot;Cannot resolve server address&quot;,sock); // if failed terminate with an error message
-        // copy Server address data into server address structure
-        memcpy((char *)&amp;serverAddr.sin_addr.s_addr,(char *)server-&gt;h_addr, server-&gt;h_length); 
-        memset(&amp;(serverAddr.sin_zero), 0, 8); // Zero out the rest of the address structure
-	// try to connect to the server and exit with an error message if failed
-        memset(buffer,0,maxBytes+1); // initialize it.
-        printf (&quot;remote-shell$&gt;&quot;);
-        fgets(buffer,maxBytes,stdin);
-        if (strncasecmp(buffer,&quot;exit&quot;,4) ==0) break;
-        if (connect(sock,(sockaddr *)&amp;serverAddr,sizeof(serverAddr)) == -1 ) 
-        {
-            terminate_with_error(&quot;Cannot connect to server&quot;,sock);
-        }
-//edit your code here
-
-
-
-
-
-        close(sock);// Close the socket.
-    }
-}
-
-```</pre>
-</div>
-<div created="20200405150303280" modified="20200405154003637" title="TCP Server">
-<pre>!! Include Needed Header Files
-```cpp
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-```
-!! Write a Convenient Function for Error Handling
-This step is not mandatory. It is just convenient to write a function that handles error and call it whenever needed:
-
-```cpp
-// A function to print an error message and terminate
-void terminate_with_error (const char * error_msg,int sock) {
-	printf (&quot;%s\n&quot;,error_msg); // printing error
-	perror(&quot;Socket Error:&quot;); // printing system error
-	if (sock != -1) // Close socket and exit is socket opened
-	{
-		close (sock);
-		exit(1);
-	}
-}
-```
-
-!! Some needed Variables
-```cpp
-int sock; // Socket Handler
-struct sockaddr_in serverAddr; // Server Address Structure 
-struct sockaddr_in clientAddr; // Client Address Structure
-socklen_t sin_size = sizeof(struct sockaddr_in); // Address Structure Size
-```
-!! Create the Socket
-```cpp
-if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) terminate_with_error(&quot;Error Creating Socket&quot;,sock);
-```
-Use the ``socket()`` function to create a socket to use for all communication. If there was an error in socket creation (i.e: returned -1) then terminate the program with an error.
-Please note the two parameters:
-
-!!!Arguments
-|!1 |!Address Family |This indicates the address family. ``AF_INET`` means Internet Protocol. There are many other protocols that could be used. Check the reference link below for information on other options. |
-|!2 |!Socket Type |There are different types of sockets. ``SOCK_STREAM`` means it is a TCP socket. There are other types including ``SOCK_DGRAM`` which is used for UDP datagram sockets. These are the two most widely used types. You can also check the link below for other options |
-|!3 |!Protocol |In case there are more than one protocol per socket type, the protocol number is placed here. In most cases there is only one protocol and we just put a ``0`` here. |
-
-!! Allow Quick Socket Reuse
-```cpp
-int sock_opt = 1; // An integer to be used with sock opt
-// Setting socket reuse option so after the program terminates we can acquire the socket again on the same  port without going into a grace period.
-setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,(void *)&amp;sock_opt,sizeof (sock_opt));
-```
-
-!! Set Socket Creation Parameters
-```cpp
-serverAddr.sin_family = AF_INET;	// Set the communication family
-serverAddr.sin_port = htons(9999);	// Set the port number
-serverAddr.sin_addr.s_addr = INADDR_ANY;// Set the socket to operate on all IP address and network interfaces available
-bzero(&amp;(serverAddr.sin_zero), 8); // We zero out the rest of the sockaddr_in to make it identical to sockaddr
-```
-!!Bind Socket to Port Number
-```cpp
-// Try to bind on the socket port, and if it fails we exit. Will fail if the socket is already acquired by another process, or the program runs with less privileges that cannot allow binding
-if (bind(sock, (struct sockaddr *)&amp;serverAddr, sizeof(struct sockaddr)) == -1) terminate_with_error(&quot;Error Binding&quot;,sock);
-```
-
-!!Start Listening on Socket for Incoming Connections
-```cpp
-// Create the socket liten queue with size 10.
-if (listen(sock, 10) == -1) terminate_with_error(&quot;Error Listening: &quot;,sock);
-```
-The queue of size 10 means that while servicing a connection, up to 10 other connections can queue up waiting to be serviced. The 11th one will get dropped.
-
-!! Service the Connection
-```cpp
-newsock = accept(sock, (struct sockaddr *)&amp;clientAddr,&amp;sin_size); // Wait for connection
-if ( newsock &lt; 1 ) terminate_with_error(&quot;Error Accepting Socket&quot;,0); // if failed exit.
-else{
-        /////// Service Connection Here		
-	close(newsock);// close the new socket
-}
-```
-
-!!Example, Print Incoming String
-```cpp
-﻿﻿int maxBytes = 1024; // size of buffer
-char buffer[maxBytes+1];	// alocat buffer of 1 K
-memset(buffer,0,maxBytes+1); // initialize it.
-int bytes_read = recv (newsock,buffer,maxBytes,0); // read data from the socket
-printf(&quot;%s\n&quot;,bytes_read);
-```
-
-!Whole Program
-```cpp
-#include &lt;stdlib.h&gt;
-#include &lt;stdio.h&gt;
-#include &lt;string.h&gt;
-#include &lt;unistd.h&gt;
-#include &lt;sys/socket.h&gt;
-#include &lt;netinet/in.h&gt;
-#include &lt;arpa/inet.h&gt;
-
-// A function to print an error message and terminate
-void terminate_with_error (const char * error_msg,int sock) {
-	printf (&quot;%s\n&quot;,error_msg); // printing error
-	perror(&quot;Socket Error:&quot;); // printing system error
-	if (sock != -1) // Close socket and exit is socket opened
-	{
-		close (sock);
-		exit(1);
-	}
-}
-
-int main (int argc,char ** argv){
-	int sock; // Socket Handler
-	struct sockaddr_in serverAddr; // Server Address Structure 
-    struct sockaddr_in clientAddr; // Client Address Structure
-	socklen_t sin_size = sizeof(struct sockaddr_in); // Address Structur Size
-	// Try to allocate a socket and if fail we terminate with an error.
-	if ((sock = socket(AF_INET, SOCK_STREAM, 0)) == -1) terminate_with_error(&quot;Error Creating Socket&quot;,sock);
-	int sock_opt = 1; // An integer to be used with sock opt
-	// Setting socket reuse option so after the program terminates we can acquire the socket again on the same  port without going into a grace period.
-	setsockopt(sock,SOL_SOCKET,SO_REUSEADDR,(void *)&amp;sock_opt,sizeof (sock_opt));
-        serverAddr.sin_family = AF_INET;	// Set the communication family
-        serverAddr.sin_port = htons(9999);	// Set the port number
-        serverAddr.sin_addr.s_addr = INADDR_ANY;// Set the socket to operate on all IP address and network interfaces available
-        bzero(&amp;(serverAddr.sin_zero), 8); // We zero out the rest of the sockaddr_in to make it identical to sockaddr
-// Try to bind on the socket port, and if it fails we exit. Will fail if the socket is already acquired by another process, or the program runs with less privileges that cannot allow binding
-	if (bind(sock, (struct sockaddr *)&amp;serverAddr, sizeof(struct sockaddr)) == -1) terminate_with_error(&quot;Error Binding&quot;,sock);
-	// Create the socket liten queue with size 10.
-	if (listen(sock, 10) == -1) terminate_with_error(&quot;Error Listening: &quot;,sock);
-	int newsock = 1;
-	
-	    //start of infinite loop
-	
-		newsock = accept(sock, (struct sockaddr *)&amp;clientAddr,&amp;sin_size); // Wait for connection
-		if ( newsock &lt; 1 ) terminate_with_error(&quot;Error Accepting Socket&quot;,0); // if failed exit.
-		else{
-			int maxBytes = 1024; // size of buffer
-			char buffer[maxBytes+1];	// alocat buffer of 1 K
-			memset(buffer,0,maxBytes+1); // initialize it.
-			int bytes_read = recv (newsock,buffer,maxBytes,0); // read data from the socket
-			if ( buffer[strlen(buffer)-1]=='\n') buffer[strlen(buffer)-1]=0;
-			if ( buffer[strlen(buffer)-1]=='\r') buffer[strlen(buffer)-1]=0;
-			if ( buffer[strlen(buffer)-1]=='\n') buffer[strlen(buffer)-1]=0;
-			if ( buffer[strlen(buffer)-1]=='\r') buffer[strlen(buffer)-1]=0;
-			//edit your code here
-			
-			printf(&quot;%s&quot;,buffer);
-			
-			
-			close(newsock);// close the new socket
-		}
-	//end of infinite loop
-	close(sock); // close the server socket
-}
-```
-!Test The Program
-!! Test Using Netcat
-# Compile Program ``g++ server.cpp -o server``
-# Run Program ``./server``
-# run (on another terminal) ``nc localhost 9999``
-# Type any text and press enter
-# Your client software should print the text
-
-!! Test Using Browser
-# Compile Program ``g++ server.cpp -o server``
-# Run Program ``./server``
-# Open browser and navigate to address http://localhost:9999
-# Your program should print the HTTP header that the browser has sent
-# Your browser should return an error because it did not get any response back
-
-REF:
-* http://man7.org/linux/man-pages/man2/socket.2.html</pre>
+<div created="20200404151549674" modified="20200404151554557" tags="" title="TCP Sockets">
+<pre></pre>
 </div>
 
 </div>
